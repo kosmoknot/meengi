@@ -1,10 +1,10 @@
 {
     "configurations": [
         {
-            "name": "C/C++: cpp build and debug active file",
+            "name": "Full build",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/source/Meengi",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
@@ -23,7 +23,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: cpp build active file",
+            "preLaunchTask": "fullbuild",
             "miDebuggerPath": "/usr/bin/gdb"
         }
     ],
