@@ -1,8 +1,8 @@
 # Compiler settings - Can be customized.
 CC = g++
 INCLD = -I ./code/include/
-CXXFLAGS = -std=c++17 -Wall $(INCLD)
-LDFLAGS = 
+CXXFLAGS = -std=c++17 -Wall $(INCLD) -g -ggdb
+LDFLAGS = -g -ggdb
 
 # Makefile settings - Can be customized.
 APPNAME = meengi

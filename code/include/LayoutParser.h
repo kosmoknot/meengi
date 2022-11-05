@@ -5,13 +5,14 @@
 class Node
 {
 public:
-    std::vector<Node> children;
-    int numcol;
     std::string name;
+    int numcol;
+    std::vector<Node> children;
 
     Node();
     Node(std::string name, int numcol);
     void AddChild(Node child);
+    void Print();
 };
 
 class LayoutParser
@@ -21,7 +22,10 @@ private:
     Node StartNode;
 
     LayoutParser(std::string path);
+    LayoutParser(const LayoutParser &other);
+    LayoutParser &operator=(const LayoutParser &other);
 
 public:
-    // static LayoutParser *GetInstance();
+    static LayoutParser *GetInstance();
+    static Node GetStartNode();
 };

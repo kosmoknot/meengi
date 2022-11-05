@@ -7,6 +7,8 @@ using namespace std;
 
 int main()
 {
+
     cout << "Starting Meengi" << endl;
-    // LayoutParser *LParser = LayoutParser::GetInstance();
+    Node start = LayoutParser::GetStartNode();
+    start.Print();
 }
