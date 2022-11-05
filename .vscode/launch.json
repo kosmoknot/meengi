@@ -4,9 +4,9 @@
             "name": "Full build",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/source/Meengi",
+            "program": "${workspaceFolder}/meengi",
             "args": [],
-            "stopAtEntry": false,
+            "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
@@ -23,7 +23,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "fullbuild",
+            "preLaunchTask": "Make all",
             "miDebuggerPath": "/usr/bin/gdb"
         }
     ],

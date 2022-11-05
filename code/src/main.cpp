@@ -7,6 +7,6 @@ using namespace std;
 
 int main()
 {
-    cout<<"Starting Meengi"<<endl;
-
+    cout << "Starting Meengi" << endl;
+    // LayoutParser *LParser = LayoutParser::GetInstance();
 }
