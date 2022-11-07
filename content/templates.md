@@ -2,13 +2,14 @@
 
 //Todo: Write Templates to support markdown style formatting here
 
-//Custom Templates
+//Custom Templates for testing
+
 #Template1(arg1,arg2):
 $arg1 and $arg2 are part of the Template1
 #
 
 #Template2():
-This is Template2 has zero arguments.
+This is Template2. It has zero arguments.
 #
 
 #Template3():

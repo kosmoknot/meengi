@@ -5,9 +5,16 @@
 
 using namespace std;
 
+TemplateParser PageRenderer::tempParser = TemplateParser();
+
 string PageRenderer::GetInputPath(Node *node) { return "./content/" + node->name + ".md"; }
 
 string PageRenderer::GetOutputPath(Node *node) { return "./site/" + node->name + ".html"; }
+
+std::string PageRenderer::InterpretLine(const std::string &iLine)
+{
+    return "";
+}
 
 void PageRenderer::Render(Node startNode)
 {
@@ -33,7 +40,7 @@ void PageRenderer::Render(Node startNode)
         {
             for (auto line : inputLines)
             {
-                output << line;
+                output << InterpretLine(line);
             }
         }
         output.close();
