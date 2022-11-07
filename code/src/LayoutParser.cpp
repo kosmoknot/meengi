@@ -34,12 +34,11 @@ void Node::Print() const
 
 // Initialise the static variables
 LayoutParser *LayoutParser::instance = nullptr;
-std::map<std::string, Node *> LayoutParser::NodeMap = std::map<std::string, Node *>();
 
 LayoutParser *LayoutParser::GetInstance()
 {
     if (instance == nullptr)
-        instance = new LayoutParser("../content/layout.md");
+        instance = new LayoutParser("./content/layout.md");
 
     return instance;
 }
@@ -49,19 +48,29 @@ Node LayoutParser::GetStartNode()
     return LayoutParser::GetInstance()->StartNode;
 }
 
+std::map<std::string, Node *> LayoutParser::GetMap() const
+{
+    return NodeMap;
+}
+
 Node *LayoutParser::FindNode(const std::string &name)
 {
-    auto search = LayoutParser::NodeMap.find(name);
-    if (search != NodeMap.end())
-        return search->second;
-    else
-        return nullptr;
+    auto search = LayoutParser::GetInstance()->GetMap().find(name);
+    return search->second;
+}
+
+void LayoutParser::SaveInMap(Node *node, const std::string str)
+{
+    if (node == nullptr)
+        return;
+
+    NodeMap[str] = node;
 }
 
 LayoutParser::LayoutParser(const std::string &path)
 {
     auto lines = GetLinesFromFile(path);
-    Node *currentParent;
+    Node *currentParent = nullptr;
     for (auto line : lines)
     {
         bool isParent = false;
@@ -80,29 +89,55 @@ LayoutParser::LayoutParser(const std::string &path)
         if (isParent)
         {
             string name = ExtractBetween(line, "##", "(");
-            int numcol = stoi(ExtractBetween(line, "(", ")"));
-            auto current = LayoutParser::FindNode(name);
-            if (current == nullptr)
+            string numcolstr = ExtractBetween(line, "(", ")");
+            int numcol;
+            if (toInt(numcolstr, numcol))
             {
-                if (StartNode.numcol == -1)
+                Node *current = NodeMap[name];
+
+                if (current == nullptr)
                 {
-                    StartNode.name = name;
-                    StartNode.numcol = numcol;
+                    if (StartNode.numcol == -1)
+                    {
+                        StartNode.name = name;
+                        StartNode.numcol = numcol;
+                        SaveInMap(&StartNode, name);
+                        currentParent = &StartNode;
+                    }
+                    else
+                    {
+                        // Parent needs to be encountered as a child before unless it is the homeTitle
+                        string warning = "In layout, " + name + " is used as PageTitle without listing it first under a PageTitle. Hence ignored";
+                        warn(warning);
+                    }
                 }
                 else
                 {
-                    string error = "In layout, " + name + " is used as PageTitle without listing it first under a PageTitle.";
-                    throw std::runtime_error(error);
+                    currentParent = current;
+                    currentParent->numcol = numcol;
                 }
             }
         }
         else if (isChild)
         {
-            string name = ExtractBetween(line, "##", "(");
-            int numcol = stoi(ExtractBetween(line, "(", ")"));
-            auto current = LayoutParser::FindNode(name);
+            string name = ExtractBetween(line, "#", "\n");
+
+            auto current = NodeMap[name];
+
             if (current == nullptr)
-                current = new Node(name, numcol);
+            {
+                current = new Node(name, -1);
+                SaveInMap(current, name);
+            }
+
+            // Child must not have been initiated before to avoid possible circular references
+            else
+            {
+                string warning = "In layout, " + name + " Is listed under multiple PageTitles. Hence ignored after first encounter. Avoid listing single page under multiple pageTitles";
+                warn(warning);
+            }
+            if (currentParent != nullptr)
+                currentParent->AddChild(current);
         }
     }
 }

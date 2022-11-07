@@ -13,12 +13,12 @@
 #Logs
 #Resources
 
-##Projects(1)
+##Projects(2)
 #Prj1
 #prj2
 #Prj3
 
-##Gallary(2)
+##Gallary(3)
 #Photos
 #PixelArt
 #Gal3

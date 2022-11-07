@@ -22,17 +22,19 @@ class LayoutParser
 {
 private:
     static LayoutParser *instance;
-    static std::map<std::string, Node *> NodeMap;
+    std::map<std::string, Node *> NodeMap;
 
     Node StartNode;
+
+    void SaveInMap(Node *node, const std::string str);
+    static LayoutParser *GetInstance();
 
     LayoutParser(const std::string &path);
     LayoutParser(const LayoutParser &other);
     LayoutParser &operator=(const LayoutParser &other);
 
-    static LayoutParser *GetInstance();
-
 public:
+    std::map<std::string, Node *> GetMap() const;
     static Node GetStartNode();
     static Node *FindNode(const std::string &name);
 };

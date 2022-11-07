@@ -11,3 +11,6 @@ string ExtractBetween(const string &target, const string &start, const string &e
 
 // writes out warnings to warnings.txt
 void warn(const string &warning);
+
+// uses try catch block to avoid crashing
+bool toInt(const string &str, int &out);
