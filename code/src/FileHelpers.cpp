@@ -66,7 +66,7 @@ void warn(const string &warning)
 {
     ofstream warningfile;
     warningfile.open("warnings.txt", ios::app);
-    warningfile << warning;
+    warningfile << warning << '\n';
     warningfile.close();
 }
 
@@ -88,4 +88,13 @@ bool toInt(const string &str, int &out)
     {
         out = val;
     }
+    return success;
+}
+
+void ClearPreviousWarnings()
+{
+    ofstream warningfile;
+    warningfile.open("warnings.txt", ios::in | ios::out);
+    warningfile << "Meengi encountered following warning: " << '\n';
+    warningfile.close();
 }
