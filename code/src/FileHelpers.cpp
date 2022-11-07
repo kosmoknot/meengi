@@ -79,7 +79,7 @@ bool toInt(const string &str, int &out)
     {
         val = stoi(str);
     }
-    catch (std::exception e)
+    catch (std::exception *e)
     {
         warn("Caught Failure in toInt while converting  " + str);
         success = false;

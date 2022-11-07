@@ -1,14 +1,11 @@
 #include <iostream>
-#include <vector>
-#include <string>
 #include "LayoutParser.h"
-#include "FileHelpers.h"
-
-using namespace std;
+#include "PageRenderer.h"
 
 int main()
 {
-    cout << "Starting Meengi" << endl;
+    std::cout << "Starting Meengi" << std::endl;
     Node start = LayoutParser::GetStartNode();
-    start.Print();
+    PageRenderer::Render(start);
+    return 0;
 }
