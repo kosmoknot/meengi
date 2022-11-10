@@ -1,5 +1,6 @@
 #include "FileHelpers.h"
 #include <iostream>
+#include <cstdarg>
 
 vector<string> GetLinesFromFile(const string &path, bool ignore_comments)
 {
@@ -27,21 +28,6 @@ vector<string> GetLinesFromFile(const string &path, bool ignore_comments)
     return ret;
 }
 
-vector<string> GetWordsFromFile(const string &path)
-{
-    fstream file;
-    vector<string> ret = vector<string>();
-    file.open(path.c_str(), ios::in);
-    if (file.is_open())
-    {
-        string word;
-        while (file >> word)
-            ret.push_back(word);
-    }
-    file.close();
-    return ret;
-}
-
 string ExtractBetween(const string &target, const string &start, const string &end)
 {
     string ret = "";
@@ -60,6 +46,24 @@ string ExtractBetween(const string &target, const string &start, const string &e
             ret = target.substr(p_start + start.size(), p_end - p_start - start.size());
     }
     return ret;
+}
+
+vector<string> TokenizeBetween(const string &target, int n, ...)
+{
+    // just use find first of no need of variadics
+    vector<string> ret;
+    ret.push_back(target);
+
+    va_list args;
+    va_start(args, n);
+
+    for (int i = 0; i < n; i++)
+    {
+        const char *token = va_arg(args, char *);
+    }
+}
+vector<string> TokenizeForSingleToken(const vector<string> &input, const char *token)
+{
 }
 
 void warn(const string &warning)
@@ -97,4 +101,24 @@ void ClearPreviousWarnings()
     warningfile.open("warnings.txt", ios::in | ios::out);
     warningfile << "Meengi encountered following warning: " << '\n';
     warningfile.close();
+}
+
+LineTypes SalamiSlice(const string &iLine, string &templateName, vector<string> &argsList, vector<string> salamiSlices)
+{
+    if (iLine.size() < 1)
+    {
+
+        return NoInfo;
+    }
+
+    auto hash_pos = iLine.find("#");
+    if (hash_pos != string::npos)
+    {
+    }
+    return NoInfo;
+}
+
+bool ReadTemplateTitle(const string &iLine, string &templateName, vector<string> &argsList)
+{
+    templateName = ExtractBetween(iLine, "$", "(");
 }
