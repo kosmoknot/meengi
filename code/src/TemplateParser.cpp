@@ -1,7 +1,11 @@
 #include "TemplateParser.h"
 #include "FileHelpers.h"
 
-Template::Template(vector<int> argOrder, vector<string> contentSalami) : ArgOrder(argOrder), ContentSalami(contentSalami)
+Template::Template(vector<int> argOrder, vector<string> contentSalami) : ArgsOrder(argOrder), ContentSalami(contentSalami)
+{
+}
+
+Template::Template()
 {
 }
 
@@ -12,11 +16,11 @@ string Template::Parse(const vector<string> &inputArgs)
 {
     string ret = ContentSalami[0];
 
-    int n = (ArgOrder.size() > inputArgs.size()) ? inputArgs.size() : ArgOrder.size();
+    int n = (ArgsOrder.size() > inputArgs.size()) ? inputArgs.size() : ArgsOrder.size();
     int i;
     for (i = 0; i < n; i++)
     {
-        ret += inputArgs[ArgOrder[i]];
+        ret += inputArgs[ArgsOrder[i]];
         ret += ContentSalami[i + 1];
     }
 
@@ -33,6 +37,9 @@ TemplateParser::TemplateParser()
     auto Lines = GetLinesFromFile("./content/templates.md");
 
     bool foundTemplate = false;
+    vector<string> args = vector<string>();
+
+    string title;
     string templateText;
 
     for (auto line : Lines)
@@ -41,17 +48,27 @@ TemplateParser::TemplateParser()
         {
             if (!foundTemplate)
             {
-                // ReadTemplateTitle(line);
+                ReadTemplateTitle(line, title, args);
                 foundTemplate = true;
             }
             else
             {
-                foundTemplate = false;
                 // Add template to the template map
+                vector<int> argsOrder;
+                vector<string> salamiSlices;
+
+                ReadTemplateText(templateText, args, argsOrder, salamiSlices);
+
+                TemplateMap[title] = Template(argsOrder, salamiSlices);
+
+                templateText = "";
+                foundTemplate = false;
             }
         }
-        if (foundTemplate)
+        else if (foundTemplate)
+        {
             templateText += line;
+        }
     }
 }
 

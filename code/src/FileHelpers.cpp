@@ -48,22 +48,40 @@ string ExtractBetween(const string &target, const string &start, const string &e
     return ret;
 }
 
-vector<string> TokenizeBetween(const string &target, int n, ...)
+string ExtractBetween(const string &target, const size_t &p_start, const string &end)
 {
-    // just use find first of no need of variadics
-    vector<string> ret;
-    ret.push_back(target);
-
-    va_list args;
-    va_start(args, n);
-
-    for (int i = 0; i < n; i++)
+    string ret = "";
+    size_t p_end;
+    if (p_start != string::npos)
     {
-        const char *token = va_arg(args, char *);
+        if (end == "\n")
+        {
+            p_end = target.size();
+        }
+        else
+            p_end = target.find(end, p_start);
+
+        if (p_end != string::npos)
+            ret = target.substr(p_start, p_end - p_start);
     }
+    return ret;
 }
-vector<string> TokenizeForSingleToken(const vector<string> &input, const char *token)
+
+vector<string> TokenizeBetween(const string &input, const string &tokens)
 {
+    vector<string> ret = vector<string>();
+    auto pos = input.find_first_of(tokens);
+    if (pos != string::npos)
+    {
+        while (pos != string::npos && pos < input.size())
+        {
+            auto pos_n = input.find_first_of(tokens, pos + 1);
+            if (pos_n != string::npos)
+                ret.push_back(input.substr(pos + 1, pos_n - pos - 1));
+            pos = pos_n;
+        }
+    }
+    return ret;
 }
 
 void warn(const string &warning)
@@ -103,22 +121,31 @@ void ClearPreviousWarnings()
     warningfile.close();
 }
 
-LineTypes SalamiSlice(const string &iLine, string &templateName, vector<string> &argsList, vector<string> salamiSlices)
-{
-    if (iLine.size() < 1)
-    {
-
-        return NoInfo;
-    }
-
-    auto hash_pos = iLine.find("#");
-    if (hash_pos != string::npos)
-    {
-    }
-    return NoInfo;
-}
-
-bool ReadTemplateTitle(const string &iLine, string &templateName, vector<string> &argsList)
+void ReadTemplateTitle(const string &iLine, string &templateName, vector<string> &argsList)
 {
     templateName = ExtractBetween(iLine, "$", "(");
+    argsList = TokenizeBetween(iLine, ",()");
+}
+void ReadTemplateText(const string &input, const vector<string> &argsList, vector<int> &argsOrder, vector<string> &salamiSlices)
+{
+    auto pos = input.find("$");
+    size_t pos_last = 0;
+    while (pos != string::npos)
+    {
+        string arg = ExtractBetween(input, pos + 1, " ");
+
+        for (size_t i = 0; i < argsList.size(); i++)
+        {
+            if (arg == argsList[i])
+            {
+                argsOrder.push_back(i);
+                salamiSlices.push_back(ExtractBetween(input, pos_last, "$"));
+                pos_last = pos + arg.size() + 1;
+                break;
+            }
+        }
+
+        pos = input.find("$", pos + 1);
+    }
+    salamiSlices.push_back(input.substr(pos_last));
 }

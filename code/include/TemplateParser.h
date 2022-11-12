@@ -9,10 +9,11 @@ using namespace std;
 class Template
 {
 private:
-    vector<int> ArgOrder;
+    vector<int> ArgsOrder;
     vector<string> ContentSalami;
 
 public:
+    Template();
     Template(vector<int> argOrder, vector<string> contentSalami);
     string Parse(const vector<string> &inputArgs);
 };
