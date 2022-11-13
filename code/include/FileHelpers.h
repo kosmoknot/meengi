@@ -16,6 +16,7 @@ void warn(const string &warning);
 // uses try catch block to avoid crashing
 bool toInt(const string &str, int &out);
 
+void ClearPreviousFiles();
 void ClearPreviousWarnings();
 
 void ReadTemplateTitle(const string &iLine, string &templateName, vector<string> &argsList);

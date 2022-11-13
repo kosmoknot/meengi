@@ -47,7 +47,7 @@ string TemplateParser::Parse(const string &iLine)
         return ret.replace(pos_start, pos_end - pos_start + 1, newText);
     }
     else
-        return iLine;
+        return iLine + " \n ";
 }
 
 TemplateParser::TemplateParser()

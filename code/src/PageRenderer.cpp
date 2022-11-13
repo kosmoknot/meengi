@@ -1,5 +1,6 @@
 #include <queue>
 #include <vector>
+#include <stdio.h>
 #include "PageRenderer.h"
 #include "FileHelpers.h"
 
@@ -32,8 +33,11 @@ void PageRenderer::Render(Node startNode)
             for (auto child : children)
                 q.push(child);
         }
+        // Clear previously generated files
+        string opath = GetOutputPath(cur);
+        remove(opath.c_str());
+        output.open(opath, ios::app);
 
-        output.open(GetOutputPath(cur), ios::app);
         auto inputLines = GetLinesFromFile(GetInputPath(cur));
 
         if (inputLines.size() > 0 && output.is_open())
