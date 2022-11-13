@@ -58,7 +58,7 @@ TemplateParser::TemplateParser()
                 vector<string> salamiSlices;
 
                 // Remove extra \n added at the end
-                ReadTemplateText(templateText.substr(0, templateText.size() - 2), args, argsOrder, salamiSlices);
+                ReadTemplateText(templateText.substr(0, templateText.size() - 1), args, argsOrder, salamiSlices);
 
                 TemplateMap[title] = Template(argsOrder, salamiSlices);
 
@@ -96,10 +96,10 @@ string TemplateParser::ParseTemplate(const string &name, const vector<string> &i
 string TemplateParser::Parse(const string &iLine, set<string> already_encountered)
 {
     auto pos_start = iLine.find("$");
+    string ret = iLine;
 
     if (pos_start != string::npos)
     {
-        string ret = iLine;
         auto pos_end = iLine.find("$", pos_start + 1);
         if (pos_end != string::npos)
         {
@@ -116,5 +116,5 @@ string TemplateParser::Parse(const string &iLine, set<string> already_encountere
             }
         }
     }
-    return iLine;
+    return ret;
 }
