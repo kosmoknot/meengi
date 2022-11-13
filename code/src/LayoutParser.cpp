@@ -38,7 +38,7 @@ LayoutParser *LayoutParser::instance = nullptr;
 LayoutParser *LayoutParser::GetInstance()
 {
     if (instance == nullptr)
-        instance = new LayoutParser("./content/layout.md");
+        instance = new LayoutParser("./content/directives/layout.md");
 
     return instance;
 }

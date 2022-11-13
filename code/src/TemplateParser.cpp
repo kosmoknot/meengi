@@ -34,7 +34,7 @@ string Template::Parse(const vector<string> &inputArgs)
 
 TemplateParser::TemplateParser()
 {
-    auto Lines = GetLinesFromFile("./content/templates.md");
+    auto Lines = GetLinesFromFile("./content/directives/templates.md");
 
     bool foundTemplate = false;
     vector<string> args = vector<string>();
