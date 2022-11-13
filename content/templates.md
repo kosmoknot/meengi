@@ -20,17 +20,17 @@ line3
 #
 
 # $Template4()
-Template4 is using another template in it, $Template1(Rainbow,Sunshine)
+Template4 is using another template in it, $Template1(Rainbow,Sunshine)$
 #
 
 # $Template5()
-Template5 is template with self referece, $Template5() 
+Template5 is template with self referece, $Template5()$.
 #
 
 # $Template6();
-Template 6 contains a cyclic dependence and so does $Template7();
+Template 6 contains a cyclic dependence and so does $Template7()$.
 #
 
 # $Template7():
-Template 7 contains a cyclic dependence and so does $Template6();
+Template 7 contains a cyclic dependence and so does $Template6()$.
 #

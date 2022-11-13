@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <map>
+#include <unordered_map>
+#include <set>
 
 using namespace std;
 
@@ -21,10 +22,10 @@ public:
 class TemplateParser
 {
 private:
-    map<string, Template> TemplateMap;
+    unordered_map<string, Template> TemplateMap;
     string ParseTemplate(const string &name, const vector<string> &inputArgs);
 
 public:
     TemplateParser();
-    string Parse(const string &iLine);
+    string Parse(const string &iLine, set<string> already_encountered);
 };

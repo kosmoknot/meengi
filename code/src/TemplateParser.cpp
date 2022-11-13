@@ -32,24 +32,6 @@ string Template::Parse(const vector<string> &inputArgs)
     return ret;
 }
 
-string TemplateParser::Parse(const string &iLine)
-{
-    auto pos_start = iLine.find("$");
-
-    string ret = iLine;
-
-    if (pos_start != string::npos)
-    {
-        string templateName = ExtractBetween(iLine, "$", "(");
-        vector<string> argsList = TokenizeBetween(iLine, ",()");
-        string newText = ParseTemplate(templateName, argsList);
-        auto pos_end = iLine.find(")");
-        return ret.replace(pos_start, pos_end - pos_start + 1, newText);
-    }
-    else
-        return iLine + " \n ";
-}
-
 TemplateParser::TemplateParser()
 {
     auto Lines = GetLinesFromFile("./content/templates.md");
@@ -75,7 +57,8 @@ TemplateParser::TemplateParser()
                 vector<int> argsOrder;
                 vector<string> salamiSlices;
 
-                ReadTemplateText(templateText, args, argsOrder, salamiSlices);
+                // Remove extra \n added at the end
+                ReadTemplateText(templateText.substr(0, templateText.size() - 2), args, argsOrder, salamiSlices);
 
                 TemplateMap[title] = Template(argsOrder, salamiSlices);
 
@@ -88,7 +71,10 @@ TemplateParser::TemplateParser()
             templateText += line;
             // We might want to change the newline character to <br> instead
             // Or we can put a optional parameter in template.md if need arises
-            templateText += " \n ";
+            // Same thing happens at PageRenderer::InterpretLine
+
+            // Need to remove extra \n added at the end
+            templateText += "\n";
         }
     }
 }
@@ -105,4 +91,30 @@ string TemplateParser::ParseTemplate(const string &name, const vector<string> &i
     }
 
     return output;
+}
+
+string TemplateParser::Parse(const string &iLine, set<string> already_encountered)
+{
+    auto pos_start = iLine.find("$");
+
+    if (pos_start != string::npos)
+    {
+        string ret = iLine;
+        auto pos_end = iLine.find("$", pos_start + 1);
+        if (pos_end != string::npos)
+        {
+            string temp = iLine.substr(pos_start, pos_end - pos_start);
+
+            string templateName = ExtractBetween(temp, "$", "(");
+
+            if (already_encountered.find(templateName) == already_encountered.end())
+            {
+                vector<string> argsList = TokenizeBetween(temp, ",()");
+                string newText = ParseTemplate(templateName, argsList);
+                already_encountered.insert(templateName);
+                return TemplateParser::Parse(ret.replace(pos_start, pos_end - pos_start + 1, newText), already_encountered);
+            }
+        }
+    }
+    return iLine;
 }

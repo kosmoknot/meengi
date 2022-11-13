@@ -14,7 +14,10 @@ string PageRenderer::GetOutputPath(Node *node) { return "./site/" + node->name +
 
 std::string PageRenderer::InterpretLine(const std::string &iLine)
 {
-    return templateParser.Parse(iLine);
+    // We might want to change the newline character to <br> instead
+    // Or we can put a optional parameter in template.md if need arises
+    // Same thing happens at TemplateParser::TemplateParser()
+    return templateParser.Parse(iLine, set<string>()) + "\n";
 }
 
 void PageRenderer::Render(Node startNode)
@@ -38,15 +41,18 @@ void PageRenderer::Render(Node startNode)
         remove(opath.c_str());
         output.open(opath, ios::app);
 
-        auto inputLines = GetLinesFromFile(GetInputPath(cur));
-
-        if (inputLines.size() > 0 && output.is_open())
+        if (output.is_open())
         {
-            for (auto line : inputLines)
+            auto inputLines = GetLinesFromFile(GetInputPath(cur));
+
+            if (inputLines.size() > 0 && output.is_open())
             {
-                output << InterpretLine(line);
+                for (auto line : inputLines)
+                {
+                    output << InterpretLine(line);
+                }
             }
+            output.close();
         }
-        output.close();
     }
 }
