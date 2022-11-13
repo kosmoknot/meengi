@@ -1,6 +1,5 @@
 #include "FileHelpers.h"
-#include <iostream>
-#include <cstdarg>
+#include <stdlib.h>
 
 vector<string> GetLinesFromFile(const string &path, bool ignore_comments)
 {
@@ -119,6 +118,11 @@ void ClearPreviousWarnings()
     warningfile.open("warnings.txt", ios::in | ios::out);
     warningfile << "Meengi encountered following warning: " << '\n';
     warningfile.close();
+}
+void ClearPreviousFiles()
+{
+    system("rm -r site/*html");
+    ClearPreviousWarnings();
 }
 
 void ReadTemplateTitle(const string &iLine, string &templateName, vector<string> &argsList)

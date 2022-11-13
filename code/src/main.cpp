@@ -7,7 +7,7 @@ int main()
 {
     std::cout << "Starting Meengi" << std::endl;
 
-    ClearPreviousWarnings();
+    ClearPreviousFiles();
 
     Node start = LayoutParser::GetStartNode();
 

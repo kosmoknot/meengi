@@ -36,11 +36,8 @@ void PageRenderer::Render(Node startNode)
             for (auto child : children)
                 q.push(child);
         }
-        // Clear previously generated files
-        string opath = GetOutputPath(cur);
-        remove(opath.c_str());
-        output.open(opath, ios::app);
 
+        output.open(GetOutputPath(cur), ios::app);
         if (output.is_open())
         {
             auto inputLines = GetLinesFromFile(GetInputPath(cur));
