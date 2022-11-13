@@ -7,7 +7,7 @@
 class PageRenderer
 {
 private:
-    static TemplateParser tempParser;
+    static TemplateParser templateParser;
 
     PageRenderer();
     static std::string GetInputPath(Node *node);

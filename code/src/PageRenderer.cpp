@@ -5,7 +5,7 @@
 
 using namespace std;
 
-TemplateParser PageRenderer::tempParser = TemplateParser();
+TemplateParser PageRenderer::templateParser = TemplateParser();
 
 string PageRenderer::GetInputPath(Node *node) { return "./content/" + node->name + ".md"; }
 
@@ -13,7 +13,7 @@ string PageRenderer::GetOutputPath(Node *node) { return "./site/" + node->name +
 
 std::string PageRenderer::InterpretLine(const std::string &iLine)
 {
-    return "";
+    return templateParser.Parse(iLine);
 }
 
 void PageRenderer::Render(Node startNode)

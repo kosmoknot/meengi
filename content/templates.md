@@ -5,7 +5,7 @@
 //Custom Templates for testing
 
 # $Template1(arg1,arg2)
-$arg1 and $arg2 are part of the Template1
+$$arg1 and $$arg2 are part of the Template1
 #
 
 # $Template2():

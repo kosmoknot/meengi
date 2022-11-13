@@ -22,9 +22,9 @@ class TemplateParser
 {
 private:
     map<string, Template> TemplateMap;
+    string ParseTemplate(const string &name, const vector<string> &inputArgs);
 
 public:
     TemplateParser();
-    string Parse(const string &name, const vector<string> &inputArgs);
-    static bool CheckForTemplate(const string &iLine, string &oName, vector<string> &oInputArgs);
+    string Parse(const string &iLine);
 };

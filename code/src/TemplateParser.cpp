@@ -32,6 +32,24 @@ string Template::Parse(const vector<string> &inputArgs)
     return ret;
 }
 
+string TemplateParser::Parse(const string &iLine)
+{
+    auto pos_start = iLine.find("$");
+
+    string ret = iLine;
+
+    if (pos_start != string::npos)
+    {
+        string templateName = ExtractBetween(iLine, "$", "(");
+        vector<string> argsList = TokenizeBetween(iLine, ",()");
+        string newText = ParseTemplate(templateName, argsList);
+        auto pos_end = iLine.find(")");
+        return ret.replace(pos_start, pos_end - pos_start + 1, newText);
+    }
+    else
+        return iLine;
+}
+
 TemplateParser::TemplateParser()
 {
     auto Lines = GetLinesFromFile("./content/templates.md");
@@ -68,16 +86,23 @@ TemplateParser::TemplateParser()
         else if (foundTemplate)
         {
             templateText += line;
+            // We might want to change the newline character to <br> instead
+            // Or we can put a optional parameter in template.md if need arises
+            templateText += " \n ";
         }
     }
 }
 
-string TemplateParser::Parse(const string &name, const vector<string> &inputArgs)
+string TemplateParser::ParseTemplate(const string &name, const vector<string> &inputArgs)
 {
-    return "";
-}
+    string output;
 
-bool TemplateParser::CheckForTemplate(const string &iLine, string &oName, vector<string> &oInputArgs)
-{
-    return true;
+    auto temp = TemplateMap.find(name);
+
+    if (temp != TemplateMap.end())
+    {
+        output = (temp->second).Parse(inputArgs);
+    }
+
+    return output;
 }

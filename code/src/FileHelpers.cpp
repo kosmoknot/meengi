@@ -128,24 +128,24 @@ void ReadTemplateTitle(const string &iLine, string &templateName, vector<string>
 }
 void ReadTemplateText(const string &input, const vector<string> &argsList, vector<int> &argsOrder, vector<string> &salamiSlices)
 {
-    auto pos = input.find("$");
+    auto pos = input.find("$$");
     size_t pos_last = 0;
     while (pos != string::npos)
     {
-        string arg = ExtractBetween(input, pos + 1, " ");
+        string arg = ExtractBetween(input, pos + 2, " ");
 
         for (size_t i = 0; i < argsList.size(); i++)
         {
             if (arg == argsList[i])
             {
                 argsOrder.push_back(i);
-                salamiSlices.push_back(ExtractBetween(input, pos_last, "$"));
-                pos_last = pos + arg.size() + 1;
+                salamiSlices.push_back(ExtractBetween(input, pos_last, "$$"));
+                pos_last = pos + arg.size() + 2;
                 break;
             }
         }
 
-        pos = input.find("$", pos + 1);
+        pos = input.find("$$", pos + 1);
     }
     salamiSlices.push_back(input.substr(pos_last));
 }
