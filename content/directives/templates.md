@@ -1,11 +1,22 @@
-//$ChildList() is a special template. Dont use it.
+// $ChildList(ChildListItem) is a special template.It is used to render the grid.
+// Each item in ChildList is rendered as ChildListItem(name). Where name is automatically taken as page name.
+# $ChildList(items)
+<ul>$$items$$</ul>
+#
 
-//Todo: Write Templates to support markdown style formatting here
+# $ChildListItem(name)
+<li>$$name$$<li><br>
+#
+
 
 //Custom Templates for testing
 
+# $Template0(arg1)
+$$arg1$$ is part of the Template0
+#
+
 # $Template1(arg1,arg2)
-$$arg1 and $$arg2 are part of the Template1
+$$arg1$$ and $$arg2$$ are part of the Template1
 #
 
 # $Template2():

@@ -1,5 +1,7 @@
 Projects testing testing.
 
+$ChildList()$
+
 $Template1(truth,beauty)$
 
 $Template2()$

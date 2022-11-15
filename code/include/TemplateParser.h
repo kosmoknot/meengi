@@ -4,6 +4,8 @@
 #include <unordered_map>
 #include <set>
 
+class Node;
+
 using namespace std;
 
 // First content salami slice + ArgOrder[0]th argument + second content salami slice + ArgOrder[1]th argument ...
@@ -24,6 +26,7 @@ class TemplateParser
 private:
     unordered_map<string, Template> TemplateMap;
     string ParseTemplate(const string &name, const vector<string> &inputArgs);
+    string ParseGrid(Node *);
 
 public:
     TemplateParser();

@@ -7,11 +7,10 @@ class Node
 {
 public:
     std::string name;
-    int numcol;
     std::vector<Node *> children;
 
     Node();
-    Node(std::string name, int numcol);
+    Node(std::string name);
     void AddChild(Node *child);
     void Print() const;
     Node Find(std::string name);

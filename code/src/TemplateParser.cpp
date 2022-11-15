@@ -1,5 +1,6 @@
 #include "TemplateParser.h"
 #include "FileHelpers.h"
+#include "PageRenderer.h"
 
 Template::Template(vector<int> argOrder, vector<string> contentSalami) : ArgsOrder(argOrder), ContentSalami(contentSalami)
 {
@@ -107,7 +108,12 @@ string TemplateParser::Parse(const string &iLine, set<string> already_encountere
 
             string templateName = ExtractBetween(temp, "$", "(");
 
-            if (already_encountered.find(templateName) == already_encountered.end())
+            if (templateName == "ChildList")
+            {
+                ret = ParseGrid(PageRenderer::GetCurrent());
+            }
+
+            else if (already_encountered.find(templateName) == already_encountered.end())
             {
                 vector<string> argsList = TokenizeBetween(temp, ",()");
                 string newText = ParseTemplate(templateName, argsList);
@@ -117,4 +123,18 @@ string TemplateParser::Parse(const string &iLine, set<string> already_encountere
         }
     }
     return ret;
+}
+
+string TemplateParser::ParseGrid(Node *node)
+{
+    auto children = node->children;
+
+    string childList = "";
+
+    for (auto child : children)
+    {
+        childList += ParseTemplate("ChildListItem", vector<string>{child->name});
+    }
+
+    return ParseTemplate("ChildList", vector<string>{childList});
 }

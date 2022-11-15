@@ -2,7 +2,7 @@
 #include "LayoutParser.h"
 #include "FileHelpers.h"
 
-Node::Node(std::string name, int numcol) : name(name), numcol(numcol)
+Node::Node(std::string name) : name(name)
 {
     children = std::vector<Node *>();
 }
@@ -12,15 +12,14 @@ void Node::AddChild(Node *child)
     children.push_back(child);
 }
 
-Node::Node() : name("Uninitialised"), numcol(-1)
+Node::Node() : name("Uninitialised")
 {
     children = std::vector<Node *>();
 }
 
 void Node::Print() const
 {
-    std::cout << name << "( " << numcol << ")"
-              << " -> { " << std::endl;
+    std::cout << name << " -> { " << std::endl;
     if (children.size() != 0)
     {
         for (auto child : children)
@@ -88,34 +87,27 @@ LayoutParser::LayoutParser(const std::string &path)
         }
         if (isParent)
         {
-            string name = ExtractBetween(line, "##", "(");
-            string numcolstr = ExtractBetween(line, "(", ")");
-            int numcol;
-            if (toInt(numcolstr, numcol))
-            {
-                Node *current = NodeMap[name];
+            string name = ExtractBetween(line, "##", "\n");
+            Node *current = NodeMap[name];
 
-                if (current == nullptr)
+            if (current == nullptr)
+            {
+                if (StartNode.name == "Uninitialised")
                 {
-                    if (StartNode.numcol == -1)
-                    {
-                        StartNode.name = name;
-                        StartNode.numcol = numcol;
-                        SaveInMap(&StartNode, name);
-                        currentParent = &StartNode;
-                    }
-                    else
-                    {
-                        // Parent needs to be encountered as a child before unless it is the homeTitle
-                        string warning = "In layout, " + name + " is used as PageTitle without listing it first under a PageTitle. Hence ignored";
-                        warn(warning);
-                    }
+                    StartNode.name = name;
+                    SaveInMap(&StartNode, name);
+                    currentParent = &StartNode;
                 }
                 else
                 {
-                    currentParent = current;
-                    currentParent->numcol = numcol;
+                    // Parent needs to be encountered as a child before unless it is the homeTitle
+                    string warning = "In layout, " + name + " is used as PageTitle without listing it first under a PageTitle. Hence ignored";
+                    warn(warning);
                 }
+            }
+            else
+            {
+                currentParent = current;
             }
         }
         else if (isChild)
@@ -126,7 +118,7 @@ LayoutParser::LayoutParser(const std::string &path)
 
             if (current == nullptr)
             {
-                current = new Node(name, -1);
+                current = new Node(name);
                 SaveInMap(current, name);
             }
 

@@ -136,20 +136,25 @@ void ReadTemplateText(const string &input, const vector<string> &argsList, vecto
     size_t pos_last = 0;
     while (pos != string::npos)
     {
-        string arg = ExtractBetween(input, pos + 2, " ");
-
-        for (size_t i = 0; i < argsList.size(); i++)
+        auto pos_arg_end = input.find("$$", pos + 1);
+        if (pos_arg_end != string::npos)
         {
-            if (arg == argsList[i])
-            {
-                argsOrder.push_back(i);
-                salamiSlices.push_back(ExtractBetween(input, pos_last, "$$"));
-                pos_last = pos + arg.size() + 2;
-                break;
-            }
-        }
+            string arg = input.substr(pos + 2, pos_arg_end - pos - 2);
 
-        pos = input.find("$$", pos + 1);
+            for (size_t i = 0; i < argsList.size(); i++)
+            {
+                if (arg == argsList[i])
+                {
+                    argsOrder.push_back(i);
+                    salamiSlices.push_back(ExtractBetween(input, pos_last, "$$"));
+                    pos_last = pos_arg_end + 2;
+                    break;
+                }
+            }
+            pos = input.find("$$", pos_arg_end + 1);
+        }
+        else
+            pos = input.find("$$", pos + 1);
     }
     salamiSlices.push_back(input.substr(pos_last));
 }

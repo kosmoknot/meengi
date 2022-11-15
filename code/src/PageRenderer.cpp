@@ -7,10 +7,13 @@
 using namespace std;
 
 TemplateParser PageRenderer::templateParser = TemplateParser();
+Node *PageRenderer::currentNode = nullptr;
 
 string PageRenderer::GetInputPath(Node *node) { return "./content/" + node->name + ".md"; }
 
 string PageRenderer::GetOutputPath(Node *node) { return "./site/" + node->name + ".html"; }
+
+Node *PageRenderer::GetCurrent() { return currentNode; }
 
 std::string PageRenderer::InterpretLine(const std::string &iLine)
 {
@@ -29,6 +32,7 @@ void PageRenderer::Render(Node startNode)
     while (!q.empty())
     {
         Node *cur = q.front();
+        PageRenderer::currentNode = cur;
         q.pop();
         auto children = cur->children;
         if (children.size() != 0)
