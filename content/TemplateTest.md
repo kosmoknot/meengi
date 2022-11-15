@@ -2,6 +2,8 @@ Projects testing testing.
 
 $ChildList()$
 
+$Template0(stuff)$
+
 $Template1(truth,beauty)$
 
 $Template2()$

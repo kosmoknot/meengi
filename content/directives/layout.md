@@ -13,11 +13,7 @@
 #Logs
 #Resources
 
-## TemplateTest
-#Prj1
-#prj2
-#Prj3
-
-##Gallary
-#Gal3
-#Gal4
+##TemplateTest
+#Test1
+#Test2
+#Test3

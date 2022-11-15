@@ -5,43 +5,43 @@
 #
 
 # $ChildListItem(name)
-<li>$$name$$<li><br>
+<li>$$name$$
 #
 
 
 //Custom Templates for testing
 
 # $Template0(arg1)
-$$arg1$$ is part of the Template0
+$$arg1$$ is part of the Template0 <br>
 #
 
 # $Template1(arg1,arg2)
-$$arg1$$ and $$arg2$$ are part of the Template1
+$$arg1$$ and $$arg2$$ are part of the Template1<br>
 #
 
 # $Template2():
-This is Template2. It has zero arguments.
+This is Template2. It has zero arguments.<br>
 #
 
 # $Template3()
-Template3 is a multiline template;
-with line1
-line2
-line3
+Template3 is a multiline template;<br>
+with line1<br>
+line2<br>
+line3<br>
 #
 
 # $Template4()
-Template4 is using another template in it, $Template1(Rainbow,Sunshine)$
+Template4 is using another template in it, $Template1(Rainbow,Sunshine)$<br>
 #
 
 # $Template5()
-Template5 is template with self referece, $Template5()$.
+Template5 is template with self referece, $Template5()$.<br>
 #
 
 # $Template6();
-Template 6 contains a cyclic dependence and so does $Template7()$.
+Template 6 contains a cyclic dependence and so does $Template7()$.<br>
 #
 
 # $Template7():
-Template 7 contains a cyclic dependence and so does $Template6()$.
+Template 7 contains a cyclic dependence and so does $Template6()$.<br>
 #
