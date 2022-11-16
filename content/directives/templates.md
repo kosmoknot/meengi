@@ -7,14 +7,14 @@
 #
 
 # $ChildListItem(name)
-<li>$$name$$
+<li><a href="$$name$$.html">$$name$$</a>
 #
 // DO NOT DELETE THESE <------
 
 //Custom Templates for testing
 
 # $Template0(arg1)
-$$arg1$$ is part of the Template0 <br>
+$$arg1$$ is part of the Template0. Just to be clear $$arg1$$ ISS A PART OF TEMPLATE0!!!<br>
 #
 
 # $Template1(arg1,arg2)
