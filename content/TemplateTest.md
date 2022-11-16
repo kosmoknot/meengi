@@ -1,24 +1,27 @@
-Projects testing testing.
+Projects testing testing.<br>
 
-$ChildList()$
+$ChildList()$<br>
 
-$Template0(stuff)$
-
-$Template1(truth,beauty)$
-
-$Template2()$
-
-$Template3()$
-
-$Template4()$
-
-$Template5()$
-
-$Template6()$
-
-$Template7()$
-
-Incorrect way of doing things: Template1(truth,beauty)$
-Incorrect way of doing things: $Template1(truth,beauty)
-Incorrect way of doing things: $Template1(truth,beauty,passion)$
-Incorrect way of doing things: $Template1(truth)$
+$Template0(stuff)$<br>
+<br>
+$Template1(truth,beauty)$<br>
+<br>
+$Template2()$<br>
+<br>
+$Template3()$<br>
+<br>
+$Template4()$<br>
+<br>
+$Template5()$<br>
+<br>
+$Template6()$<br>
+<br>
+$Template7()$<br>
+<br>
+Incorrect way of doing things: Template1(truth,beauty)$<br>
+<br>
+Incorrect way of doing things: $Template1(truth,beauty)<br>
+<br>
+Incorrect way of doing things: $Template1(truth,beauty,passion)$<br>
+<br>
+Incorrect way of doing things: $Template1(truth)$ <br>

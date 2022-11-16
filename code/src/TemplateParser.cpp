@@ -21,7 +21,8 @@ string Template::Parse(const vector<string> &inputArgs)
     int i;
     for (i = 0; i < n; i++)
     {
-        ret += inputArgs[ArgsOrder[i]];
+        if (ArgsOrder[i] < (int)inputArgs.size())
+            ret += inputArgs[ArgsOrder[i]];
         ret += ContentSalami[i + 1];
     }
 

@@ -14,36 +14,36 @@
 //Custom Templates for testing
 
 # $Template0(arg1)
-$$arg1$$ is part of the Template0. Just to be clear $$arg1$$ ISS A PART OF TEMPLATE0!!!<br>
+$$arg1$$ is part of the Template0. Just to be clear $$arg1$$ ISS A PART OF TEMPLATE0!!!
 #
 
 # $Template1(arg1,arg2)
-$$arg1$$ and $$arg2$$ are part of the Template1<br>
+$$arg1$$ and $$arg2$$ are part of the Template1
 #
 
 # $Template2():
-This is Template2. It has zero arguments.<br>
+This is Template2. It has zero arguments.
 #
 
 # $Template3()
-Template3 is a multiline template;<br>
-with line1<br>
-line2<br>
-line3<br>
+Template3 is a multiline template;
+with line1
+line2
+line3
 #
 
 # $Template4()
-Template4 is using another template in it, $Template1(Rainbow,Sunshine)$<br>
+Template4 is using another template in it, $Template1(Rainbow,Sunshine)$
 #
 
 # $Template5()
-Template5 is template with self referece, $Template5()$.<br>
+Template5 is template with self referece, $Template5()$.
 #
 
 # $Template6();
-Template 6 contains a cyclic dependence and so does $Template7()$.<br>
+Template 6 contains a cyclic dependence and so does $Template7()$.
 #
 
 # $Template7():
-Template 7 contains a cyclic dependence and so does $Template6()$.<br>
+Template 7 contains a cyclic dependence and so does $Template6()$.
 #
