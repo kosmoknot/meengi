@@ -10,5 +10,5 @@ Meengi uses a simple static website generator written in C++ that takes markdown
 Created for my website [kosmoknot](https://kosmoknot.netlify.app/)
 
 Other similar websites which use similar tools; used for inspiration:
-[hundredrabbits/100r.co](https://github.com/hundredrabbits/100r.co)
-[abstractxan](https://abstractxan.xyz)
+- [hundredrabbits/100r.co](https://github.com/hundredrabbits/100r.co)
+- [abstractxan](https://abstractxan.xyz)
