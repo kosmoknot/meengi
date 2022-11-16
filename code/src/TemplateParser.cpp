@@ -17,7 +17,7 @@ string Template::Parse(const vector<string> &inputArgs)
 {
     string ret = ContentSalami[0];
 
-    int n = (ArgsOrder.size() > inputArgs.size()) ? inputArgs.size() : ArgsOrder.size();
+    int n = (Max(ArgsOrder) > inputArgs.size()) ? Max(ArgsOrder) : ArgsOrder.size();
     int i;
     for (i = 0; i < n; i++)
     {

@@ -21,3 +21,10 @@ void ClearPreviousWarnings();
 
 void ReadTemplateTitle(const string &iLine, string &templateName, vector<string> &argsList);
 void ReadTemplateText(const string &input, const vector<string> &argsList, vector<int> &argsOrder, vector<string> &salamiSlices);
+
+/////////////////////
+// Not really file helpers but didn't really want to rename the whole file
+/////////////////////
+
+// Need this to find out how many arguments do we have in a template
+size_t Max(const vector<int> &vec);

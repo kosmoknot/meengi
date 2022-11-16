@@ -158,3 +158,16 @@ void ReadTemplateText(const string &input, const vector<string> &argsList, vecto
     }
     salamiSlices.push_back(input.substr(pos_last));
 }
+
+// Need this to find out how many arguments do we have in a template
+size_t Max(const vector<int> &vec)
+{
+    int ret = -1;
+
+    for (auto val : vec)
+    {
+        if (val > ret)
+            ret = val;
+    }
+    return ret + 1;
+}
