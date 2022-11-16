@@ -47,3 +47,7 @@ Dedicated place to store javascript (and all other black magic). (If you feel li
 ### How to run?
 Just launch meengi!
 
+## Todo:
+- GenerateSiteMap()
+- NavigItem() / NavigBar()
+
