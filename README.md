@@ -1,7 +1,7 @@
 # Meengi(Memex Engine)
 
 <p align="center">
-<img src="./links/images/Meengi.png" alt="drawing" style="" width="150"/>
+<img src="/links/images/meengi.png" alt="drawing" style="" width="150"/>
 </p>
 A memex and logs based journaling system meant to keep track of my life. Still in early development.
 

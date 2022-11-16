@@ -1,5 +1,7 @@
 // $ChildList(ChildListItem) is a special template.It is used to render the grid.
 // Each item in ChildList is rendered as ChildListItem(name). Where name is automatically taken as page name.
+
+// DO NOT DELETE THESE ------>
 # $ChildList(items)
 <ul>$$items$$</ul>
 #
@@ -7,7 +9,7 @@
 # $ChildListItem(name)
 <li>$$name$$
 #
-
+// DO NOT DELETE THESE <------
 
 //Custom Templates for testing
 
