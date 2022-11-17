@@ -11,7 +11,7 @@
 #
 // DO NOT DELETE THESE <------
 
-//Custom Templates for testing
+//Custom Templates for testing------>
 
 # $Template0(arg1)
 $$arg1$$ is part of the Template0. Just to be clear $$arg1$$ ISS A PART OF TEMPLATE0!!!
@@ -46,4 +46,10 @@ Template 6 contains a cyclic dependence and so does $Template7()$.
 
 # $Template7():
 Template 7 contains a cyclic dependence and so does $Template6()$.
+#
+
+//<------Custom Templates for testing
+
+# $Header(name):
+<html>
 #

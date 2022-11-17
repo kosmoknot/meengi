@@ -1,0 +1,158 @@
+:root{
+    --background:       #1d1f21;
+    --backgroundlight:  #333;
+    --normaltext:       #c9cacc;
+    --textdecor:        #2bbc8a;
+    --h1text:             white;
+}
+
+html {
+    border-top: 2px solid var(--normaltext);
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    color: var(--normaltext);
+    background-color: var(--background);
+    font-family: "Menlo", "Meslo LG", monospace;
+    font-weight: 400;
+    line-height: 1.725;
+    text-rendering: geometricPrecision;
+    min-height: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+h1 {
+    font-size: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: var(--h1text);
+}
+
+a {
+    color: var(--normaltext);
+    text-decoration: underline;
+    text-decoration-color: var(--textdecor);
+    text-underline-offset: 5px;
+}
+
+a:hover {
+    color: var(--textdecor);
+}
+
+.childlist{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 21px;
+    list-style-type:none;
+}
+
+.childlist li{
+    margin-top: 30px;
+}
+
+.topsection{
+    color: var(--normaltext);
+    width: 650px;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:justify;
+    margin-top: 30px;
+}
+
+footer {
+    width: 100%;
+    background-color: #333;
+}
+
+.footerContainer{
+    width: 100%;
+    background-color: #333;
+}
+
+
+.footer {
+    margin-left: auto;
+    margin-right: auto;
+    width: 650px;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    height: 40px;
+    align-items: center;
+    margin-top: 30px;
+    padding-top: 10px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #2bbc8a;
+}
+
+.footer_text {
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: nowrap;
+    display: block;
+    font-size: 15px;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    color: #c9cacc;
+    width: 650px;
+    height: 40px;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-top: 8px;
+}
+
+#cc {
+    width: 40px;
+    display: flex;
+}
+
+#meengi {
+    width: 40px;
+    margin-top: 10px;
+    margin-left: 3px;
+}
+
+#git {
+    width: 36px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#neo {
+    width: 47px;
+    margin-top: 12px;
+    margin-left: 12px;
+}
+
+#c {
+    display: block;
+    width: 500px;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
