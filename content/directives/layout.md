@@ -7,7 +7,7 @@
 // A single page title can only appear twice. (I don't want to keep searching for cyclic dependence)
 //
 
-##Home
+##index
 #TemplateTest
 #Gallary
 #Logs
