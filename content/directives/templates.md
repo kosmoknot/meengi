@@ -58,7 +58,7 @@ Template 7 contains a cyclic dependence and so does $Template6()$.
     <meta charset="UTF-8">
     <meta name="description" content="Meengi demo website">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <title>Meengi - $$name$$ </title>
+    <title>Meengi - $PageName()$ </title>
     <link rel="icon" href="/links/images/meengi.png" type="image/icon type">
     <link href="/links/style.css" rel="stylesheet" type="text/css" media="all">
 </head>

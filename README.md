@@ -24,6 +24,10 @@ Other similar websites, which use similar tools, used for inspiration:
 ### Templates
 A user defined reusable textblock. Templates can also accept inputs arguments, which make templates more flexible.
 
+There are some special templates which can fetch some info like;
+
+- Page Name $PageName()$ : Fetches current page name.
+
 ### Layout
 Layout.md file contains structure of the whole website.
 
@@ -51,4 +55,3 @@ Just launch meengi!
 - GenerateSiteMap()
 - NavigItem() / NavigBar()
 - Passing args from layout to modify rendering childlist
-- Automatically detect page name in template arguments

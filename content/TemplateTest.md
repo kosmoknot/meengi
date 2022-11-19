@@ -1,4 +1,4 @@
-$Header(TemplateTest)$
+$Header()$
 Projects testing testing.<br>
 
 $ChildList()$<br>

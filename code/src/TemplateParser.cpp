@@ -91,6 +91,9 @@ string TemplateParser::ParseTemplate(const string &name, const vector<string> &i
     {
         output = (temp->second).Parse(inputArgs);
     }
+    // System templates to fetch info about current page name.
+    else if (name == "PageName")
+        output = PageRenderer::GetCurrent()->name;
 
     return output;
 }
