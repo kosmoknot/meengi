@@ -50,4 +50,5 @@ Just launch meengi!
 ## Todo:
 - GenerateSiteMap()
 - NavigItem() / NavigBar()
-
+- Passing args from layout to modify rendering childlist
+- Automatically detect page name in template arguments

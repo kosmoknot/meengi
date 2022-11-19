@@ -1,3 +1,4 @@
+$Header(TemplateTest)$
 Projects testing testing.<br>
 
 $ChildList()$<br>
@@ -25,3 +26,4 @@ Incorrect way of doing things: $Template1(truth,beauty)<br>
 Incorrect way of doing things: $Template1(truth,beauty,passion)$<br>
 <br>
 Incorrect way of doing things: $Template1(truth)$ <br>
+$Footer()$

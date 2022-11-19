@@ -3,11 +3,11 @@
 
 // DO NOT DELETE THESE ------>
 # $ChildList(items)
-<ul>$$items$$</ul>
+<ul class="childlist">$$items$$</ul>
 #
 
 # $ChildListItem(name)
-<li><a href="$$name$$.html">$$name$$</a>
+<li><a href="$$name$$.html"><figure><img style="width: 150px;" src="/links/images/$$name$$.gif"></figure>$$name$$<caption></caption></a>
 #
 // DO NOT DELETE THESE <------
 
@@ -51,5 +51,47 @@ Template 7 contains a cyclic dependence and so does $Template6()$.
 //<------Custom Templates for testing
 
 # $Header(name):
+<!DOCTYPE html>
 <html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Meengi demo website">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Meengi - $$name$$ </title>
+    <link rel="icon" href="/links/images/meengi.png" type="image/icon type">
+    <link href="/links/style.css" rel="stylesheet" type="text/css" media="all">
+</head>
+
+<body>
 #
+
+# $Footer():
+</body>
+<footer>
+    <div class="footerContainer">
+        <div class="footer">
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <img id="cc" alt="Creative Commons License" src="/links/images/creative_commons_min.webp" />
+            </a>
+
+            <a rel="meengi" href="https://github.com/kosmoknot/meengi">
+                <img id="meengi" src="/links/images/meengi_light.png" />
+            </a>
+
+            <a rel="github" href="https://github.com/kosmoknot">
+                <img id="git" src="/links//images/github.webp" />
+            </a>
+
+            <a rel="neocities" href="https://neocities.org/site/kosmoknot">
+                <img id="neo" src="/links/images/neocities.webp" />
+            </a>
+        </div>
+        <div class="footer_text">
+            <p>KosmoKnot Ⓒ 2022 — BY-NC-SA 4.0</p>
+        </div>
+    </div>
+</footer>
+
+</html>
+# 
