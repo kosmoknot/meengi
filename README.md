@@ -4,6 +4,8 @@
 <img src="/links/images/meengi.png" alt="drawing" style="" width="300"/>
 </p>
 
+## [Demo](https://meengi.netlify.app/site/index.html)
+
 ## About
 A memex and logs based journaling system meant to keep track of my life.
 
