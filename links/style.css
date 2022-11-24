@@ -1,6 +1,7 @@
 :root{
     --background:       #1d1f21;
     --backgroundlight:  #333;
+    --backgroundlightlight:#666;
     --normaltext:       #c9cacc;
     --textdecor:        #2bbc8a;
     --h1text:             white;
@@ -82,12 +83,13 @@ a:hover {
     justify-items: center;
     justify-content: start;
     background-color: var(--backgroundlight);
+    margin-bottom: 20px;
+    padding: 3px;
 }
 
 .NavigItem{
     margin-left: 10px;
-    background-color: var(--backgroundlight);
-    color: #1d1f21;
+    background-color: var(--backgroundlightlight);
     border:1px solid #c9cacc;
     padding-left: 4px;
     padding-right: 4px;
@@ -95,7 +97,6 @@ a:hover {
 }
 .NavigItem a:hover {
     color: var(--textdecor);
-    
 }
 
 .NavigList{
