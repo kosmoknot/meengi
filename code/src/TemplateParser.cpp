@@ -114,7 +114,11 @@ string TemplateParser::Parse(const string &iLine, set<string> already_encountere
 
             if (templateName == "ChildList")
             {
-                ret = ParseGrid(PageRenderer::GetCurrent());
+                ret = ParseChildList(PageRenderer::GetCurrent());
+            }
+            else if (templateName == "NavigList")
+            {
+                ret = ParseNavigList(PageRenderer::GetCurrent());
             }
 
             else if (already_encountered.find(templateName) == already_encountered.end())
@@ -129,7 +133,7 @@ string TemplateParser::Parse(const string &iLine, set<string> already_encountere
     return ret;
 }
 
-string TemplateParser::ParseGrid(Node *node)
+string TemplateParser::ParseChildList(Node *node)
 {
     auto children = node->children;
 
@@ -141,4 +145,19 @@ string TemplateParser::ParseGrid(Node *node)
     }
 
     return ParseTemplate("ChildList", vector<string>{childList});
+}
+
+string TemplateParser::ParseNavigList(Node *node)
+{
+    auto curParent = node;
+
+    string parentList = "";
+
+    while (curParent != nullptr)
+    {
+        parentList += ParseTemplate("NavigItem", vector<string>{curParent->name});
+        curParent = curParent->parent;
+    }
+
+    return ParseTemplate("NavigList", vector<string>{parentList});
 }

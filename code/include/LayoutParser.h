@@ -8,9 +8,10 @@ class Node
 public:
     std::string name;
     std::vector<Node *> children;
+    Node *parent;
 
     Node();
-    Node(std::string name);
+    Node(std::string name, Node *parent = nullptr);
     void AddChild(Node *child);
     void Print() const;
     Node Find(std::string name);

@@ -2,7 +2,7 @@
 #include "LayoutParser.h"
 #include "FileHelpers.h"
 
-Node::Node(std::string name) : name(name)
+Node::Node(std::string name, Node *parent) : name(name), parent(parent)
 {
     children = std::vector<Node *>();
 }
@@ -12,7 +12,7 @@ void Node::AddChild(Node *child)
     children.push_back(child);
 }
 
-Node::Node() : name("Uninitialised")
+Node::Node() : name("Uninitialised"), parent(nullptr)
 {
     children = std::vector<Node *>();
 }
@@ -95,6 +95,7 @@ LayoutParser::LayoutParser(const std::string &path)
                 if (StartNode.name == "Uninitialised")
                 {
                     StartNode.name = name;
+                    StartNode.parent = nullptr;
                     SaveInMap(&StartNode, name);
                     currentParent = &StartNode;
                 }
@@ -128,8 +129,12 @@ LayoutParser::LayoutParser(const std::string &path)
                 string warning = "In layout, " + name + " Is listed under multiple PageTitles. Hence ignored after first encounter. Avoid listing single page under multiple pageTitles";
                 warn(warning);
             }
+
             if (currentParent != nullptr)
+            {
+                current->parent = currentParent;
                 currentParent->AddChild(current);
+            }
         }
     }
 }

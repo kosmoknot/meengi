@@ -26,7 +26,9 @@ A user defined reusable textblock. Templates can also accept inputs arguments, w
 
 There are some special templates which can fetch some info like;
 
-- Page Name $PageName()$ : Fetches current page name.
+- Page Name: Fetches current page name.
+- ChildList: Prints list of children pages organised under this page
+- NavigList: Shows navigation menu
 
 ### Layout
 Layout.md file contains structure of the whole website.

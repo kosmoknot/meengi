@@ -9,7 +9,15 @@
 # $ChildListItem(name)
 <li><a href="$$name$$.html"><figure><img style="width: 150px;" src="/links/images/$$name$$.gif"></figure>$$name$$<caption></caption></a>
 #
-// DO NOT DELETE THESE <------
+
+# $NavigList(items)
+<div class="NavigList">$$items$$</div>
+#
+
+# $NavigItem(name)
+<div class="NavigItem"><a href="$$name$$.html">$$name$$</a></div>
+#
+//<------ DO NOT DELETE THESE
 
 //Custom Templates for testing------>
 
@@ -50,7 +58,7 @@ Template 7 contains a cyclic dependence and so does $Template6()$.
 
 //<------Custom Templates for testing
 
-# $Header(name):
+# $Header():
 <!DOCTYPE html>
 <html>
 

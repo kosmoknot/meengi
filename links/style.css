@@ -76,6 +76,32 @@ a:hover {
     margin-top: 30px;
 }
 
+.NavigList{
+    display: flex;
+    flex-direction:row-reverse;
+    justify-items: center;
+    justify-content: start;
+    background-color: var(--backgroundlight);
+}
+
+.NavigItem{
+    margin-left: 10px;
+    background-color: var(--backgroundlight);
+    color: #1d1f21;
+    border:1px solid #c9cacc;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 2px;
+}
+.NavigItem a:hover {
+    color: var(--textdecor);
+    
+}
+
+.NavigList{
+
+}
+
 footer {
     width: 100%;
     background-color: #333;

@@ -26,7 +26,8 @@ class TemplateParser
 private:
     unordered_map<string, Template> TemplateMap;
     string ParseTemplate(const string &name, const vector<string> &inputArgs);
-    string ParseGrid(Node *);
+    string ParseChildList(Node *node);
+    string ParseNavigList(Node *node);
 
 public:
     TemplateParser();
