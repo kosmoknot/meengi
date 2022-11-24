@@ -55,6 +55,5 @@ Just launch meengi!
 
 ## Todo:
 - GenerateSiteMap()
-- NavigItem() / NavigBar()
 - Passing args from layout to modify rendering childlist
 - add mastadon
