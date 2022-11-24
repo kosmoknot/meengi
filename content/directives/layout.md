@@ -9,11 +9,13 @@
 
 ##index
 #TemplateTest
+
+##TemplateTest
 #Gallary
 #Logs
 #Resources
 
-##TemplateTest
-#Test1
-#Test2
-#Test3
+##Gallary
+#Gal1
+#Gal2
+#Gal3
