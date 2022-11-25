@@ -48,9 +48,6 @@ Contain layout.md and template.md files which define how content files are rende
 ### Links
 Dedicated place to store images, gif, css and any other useful links. (If you feel like it you can rename/delete this folder)
 
-### Voodoo
-Dedicated place to store javascript (and all other black magic). (If you feel like it you can rename/delete this folder)
-
 ### How to run?
 Just launch meengi!
 
