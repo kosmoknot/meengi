@@ -35,6 +35,6 @@ private:
 
 public:
     std::map<std::string, Node *> GetMap() const;
-    static Node GetStartNode();
+    static Node *GetStartNode();
     static Node *FindNode(const std::string &name);
 };

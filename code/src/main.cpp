@@ -9,7 +9,7 @@ int main()
 
     ClearPreviousFiles();
 
-    Node start = LayoutParser::GetStartNode();
+    auto start = LayoutParser::GetStartNode();
 
     PageRenderer::Render(start);
 

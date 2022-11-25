@@ -30,7 +30,7 @@ private:
     // Special Parsing functions
     string ParseChildList(Node *node);
     string ParseNavigList(Node *node);
-    string PasrseTreeMap();
+    string PasrseTreeMap(Node *node);
     string ParseTreeMapLevel(Node *node, int lvl);
 
 public:

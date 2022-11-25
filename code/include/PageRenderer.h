@@ -16,6 +16,6 @@ private:
     static std::string InterpretLine(const std::string &iLine);
 
 public:
-    static void Render(Node startNode);
+    static void Render(Node *startNode);
     static Node *GetCurrent();
 };

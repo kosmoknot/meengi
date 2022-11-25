@@ -23,11 +23,11 @@ std::string PageRenderer::InterpretLine(const std::string &iLine)
     return templateParser.Parse(iLine, set<string>()) + "\n";
 }
 
-void PageRenderer::Render(Node startNode)
+void PageRenderer::Render(Node *startNode)
 {
     ofstream output;
     queue<Node *> q;
-    q.push(&startNode);
+    q.push(startNode);
 
     while (!q.empty())
     {

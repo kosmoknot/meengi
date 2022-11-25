@@ -119,7 +119,10 @@ string TemplateParser::Parse(const string &iLine, set<string> already_encountere
                 ret = ParseNavigList(PageRenderer::GetCurrent());
 
             else if (templateName == "TreeMap")
-                ret = PasrseTreeMap();
+                ret = PasrseTreeMap(LayoutParser::GetStartNode());
+
+            else if (templateName == "TreeMapPartial")
+                ret = PasrseTreeMap(PageRenderer::GetCurrent());
 
             else if (already_encountered.find(templateName) == already_encountered.end())
             {
@@ -162,11 +165,11 @@ string TemplateParser::ParseNavigList(Node *node)
     return ParseTemplate("NavigList", vector<string>{parentList});
 }
 
-string TemplateParser::PasrseTreeMap()
+string TemplateParser::PasrseTreeMap(Node *node)
 {
     string map = "";
 
-    auto curLevel = LayoutParser::GetStartNode().children;
+    auto curLevel = node->children;
     for (auto curLevelNode : curLevel)
         map += ParseTreeMapLevel(curLevelNode, 1);
 

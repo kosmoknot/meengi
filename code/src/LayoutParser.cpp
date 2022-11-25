@@ -42,9 +42,9 @@ LayoutParser *LayoutParser::GetInstance()
     return instance;
 }
 
-Node LayoutParser::GetStartNode()
+Node *LayoutParser::GetStartNode()
 {
-    return LayoutParser::GetInstance()->StartNode;
+    return &LayoutParser::GetInstance()->StartNode;
 }
 
 std::map<std::string, Node *> LayoutParser::GetMap() const
