@@ -112,22 +112,27 @@ string TemplateParser::Parse(const string &iLine, set<string> already_encountere
 
             string templateName = ExtractBetween(temp, "$", "(");
 
-            if (templateName == "ChildList")
-                ret = ParseChildList(PageRenderer::GetCurrent());
-
-            else if (templateName == "NavigList")
-                ret = ParseNavigList(PageRenderer::GetCurrent());
-
-            else if (templateName == "TreeMap")
-                ret = PasrseTreeMap(LayoutParser::GetStartNode());
-
-            else if (templateName == "TreeMapPartial")
-                ret = PasrseTreeMap(PageRenderer::GetCurrent());
-
-            else if (already_encountered.find(templateName) == already_encountered.end())
+            if (already_encountered.find(templateName) == already_encountered.end())
             {
                 vector<string> argsList = TokenizeBetween(temp, ",()");
-                string newText = ParseTemplate(templateName, argsList);
+                string newText = "";
+
+                // Parse the special templates
+                if (templateName == "ChildList")
+                    newText = ParseChildList(PageRenderer::GetCurrent());
+
+                else if (templateName == "NavigList")
+                    newText = ParseNavigList(PageRenderer::GetCurrent());
+
+                else if (templateName == "TreeMap")
+                    newText = PasrseTreeMap(LayoutParser::GetStartNode());
+
+                else if (templateName == "TreeMapPartial")
+                    newText = PasrseTreeMap(PageRenderer::GetCurrent());
+
+                else
+                    newText = ParseTemplate(templateName, argsList);
+
                 already_encountered.insert(templateName);
                 return TemplateParser::Parse(ret.replace(pos_start, pos_end - pos_start + 1, newText), already_encountered);
             }
