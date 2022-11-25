@@ -27,8 +27,9 @@ A user defined reusable textblock. Templates can also accept inputs arguments, w
 There are some special templates which can fetch some info like;
 
 - Page Name: Fetches current page name.
-- ChildList: Prints list of children pages organised under this page
-- NavigList: Shows navigation menu
+- ChildList: Prints list of children pages organised under this page.
+- NavigList: Shows navigation menu.
+- TreeMap:   Shows tree map of the webisite.
 
 ### Layout
 Layout.md file contains structure of the whole website.
