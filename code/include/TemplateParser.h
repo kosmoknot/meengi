@@ -17,7 +17,7 @@ private:
 
 public:
     Template();
-    Template(vector<int> argOrder, vector<string> contentSalami);
+    Template(const vector<int> &argOrder, const vector<string> &contentSalami);
     string Parse(const vector<string> &inputArgs);
 };
 
@@ -26,8 +26,12 @@ class TemplateParser
 private:
     unordered_map<string, Template> TemplateMap;
     string ParseTemplate(const string &name, const vector<string> &inputArgs);
+
+    // Special Parsing functions
     string ParseChildList(Node *node);
     string ParseNavigList(Node *node);
+    string PasrseTreeMap();
+    string ParseTreeMapLevel(Node *node, int lvl);
 
 public:
     TemplateParser();

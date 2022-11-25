@@ -2,7 +2,7 @@
 #include "FileHelpers.h"
 #include "PageRenderer.h"
 
-Template::Template(vector<int> argOrder, vector<string> contentSalami) : ArgsOrder(argOrder), ContentSalami(contentSalami)
+Template::Template(const vector<int> &argOrder, const vector<string> &contentSalami) : ArgsOrder(argOrder), ContentSalami(contentSalami)
 {
 }
 
@@ -113,13 +113,13 @@ string TemplateParser::Parse(const string &iLine, set<string> already_encountere
             string templateName = ExtractBetween(temp, "$", "(");
 
             if (templateName == "ChildList")
-            {
                 ret = ParseChildList(PageRenderer::GetCurrent());
-            }
+
             else if (templateName == "NavigList")
-            {
                 ret = ParseNavigList(PageRenderer::GetCurrent());
-            }
+
+            else if (templateName == "TreeMap")
+                ret = PasrseTreeMap();
 
             else if (already_encountered.find(templateName) == already_encountered.end())
             {
@@ -160,4 +160,35 @@ string TemplateParser::ParseNavigList(Node *node)
     }
 
     return ParseTemplate("NavigList", vector<string>{parentList});
+}
+
+string TemplateParser::PasrseTreeMap()
+{
+    string map = "";
+
+    auto curLevel = LayoutParser::GetStartNode().children;
+    for (auto curLevelNode : curLevel)
+        map += ParseTreeMapLevel(curLevelNode, 1);
+
+    string ret = ParseTemplate("TreeMap", vector<string>{map});
+    return ret;
+}
+
+string TemplateParser::ParseTreeMapLevel(Node *node, int lvl)
+{
+    string titleTemplateName = "";
+
+    if (lvl == 1)
+        titleTemplateName = "TreeMapTitle1";
+    else
+        titleTemplateName = "TreeMapTitle2";
+
+    string childMap = "";
+    for (auto child : node->children)
+    {
+        childMap += ParseTreeMapLevel(child, lvl + 1);
+    }
+
+    string ret = ParseTemplate(titleTemplateName, vector<string>{node->name, childMap});
+    return ret;
 }

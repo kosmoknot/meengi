@@ -17,6 +17,29 @@
 # $NavigItem(name)
 <div class="NavigItem"><a href="$$name$$.html">$$name$$</a></div>
 #
+
+# $TreeMap(map)
+<ul>
+$$map$$
+</ul>
+#
+
+//This is the top level title can be customised to look different
+# $TreeMapTitle1(name,childMap)
+<li><a href="$$name$$.html">$$name$$</a>
+<ul>
+$$childMap$$
+</ul>
+#
+
+//This is used for everything except top level title can be customised to look different
+# $TreeMapTitle2(name,childMap)
+<li><a href="$$name$$.html">$$name$$</a>
+<ul>
+$$childMap$$
+</ul>
+#
+
 //<------ DO NOT DELETE THESE
 
 //Custom Templates for testing------>

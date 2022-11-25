@@ -34,6 +34,10 @@ body {
     -ms-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
+
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1 {
