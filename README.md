@@ -55,6 +55,5 @@ Dedicated place to store javascript (and all other black magic). (If you feel li
 Just launch meengi!
 
 ## Todo:
-- GenerateSiteMap()
 - Passing args from layout to modify rendering childlist
 - add mastadon
