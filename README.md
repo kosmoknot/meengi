@@ -54,5 +54,5 @@ Just launch meengi!
 
 ## Todo:
 - Passing args from layout to modify rendering childlist
-- add mastadon
+- Add markdown reader
 - $Template() $Template() doesnt work
