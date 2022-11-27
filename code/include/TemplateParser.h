@@ -28,9 +28,9 @@ private:
     string ParseTemplate(const string &name, const vector<string> &inputArgs);
 
     // Special Parsing functions
-    string ParseChildList(Node *node);
-    string ParseNavigList(Node *node);
-    string PasrseTreeMap(Node *node);
+    string ParseChildList(Node *node, vector<string> args);
+    string ParseNavigList(Node *node, vector<string> args);
+    string PasrseTreeMap(Node *node, vector<string> args);
     string ParseTreeMapLevel(Node *node, int lvl);
 
 public:

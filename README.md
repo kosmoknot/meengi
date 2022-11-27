@@ -55,3 +55,4 @@ Just launch meengi!
 ## Todo:
 - Passing args from layout to modify rendering childlist
 - add mastadon
+- $Template() $Template() doesnt work

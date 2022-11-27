@@ -119,16 +119,16 @@ string TemplateParser::Parse(const string &iLine, set<string> already_encountere
 
                 // Parse the special templates
                 if (templateName == "ChildList")
-                    newText = ParseChildList(PageRenderer::GetCurrent());
+                    newText = ParseChildList(PageRenderer::GetCurrent(), argsList);
 
                 else if (templateName == "NavigList")
-                    newText = ParseNavigList(PageRenderer::GetCurrent());
+                    newText = ParseNavigList(PageRenderer::GetCurrent(), argsList);
 
                 else if (templateName == "TreeMap")
-                    newText = PasrseTreeMap(LayoutParser::GetStartNode());
+                    newText = PasrseTreeMap(LayoutParser::GetStartNode(), argsList);
 
                 else if (templateName == "TreeMapPartial")
-                    newText = PasrseTreeMap(PageRenderer::GetCurrent());
+                    newText = PasrseTreeMap(PageRenderer::GetCurrent(), argsList);
 
                 else
                     newText = ParseTemplate(templateName, argsList);
@@ -141,21 +141,21 @@ string TemplateParser::Parse(const string &iLine, set<string> already_encountere
     return ret;
 }
 
-string TemplateParser::ParseChildList(Node *node)
+string TemplateParser::ParseChildList(Node *node, vector<string> args)
 {
     auto children = node->children;
 
     string childList = "";
-
     for (auto child : children)
-    {
         childList += ParseTemplate("ChildListItem", vector<string>{child->name});
-    }
 
-    return ParseTemplate("ChildList", vector<string>{childList});
+    vector<string> templateArgs = vector<string>{childList};
+    templateArgs.insert(templateArgs.end(), args.begin(), args.end());
+
+    return ParseTemplate("ChildList", templateArgs);
 }
 
-string TemplateParser::ParseNavigList(Node *node)
+string TemplateParser::ParseNavigList(Node *node, vector<string> args)
 {
     auto curParent = node;
 
@@ -167,10 +167,13 @@ string TemplateParser::ParseNavigList(Node *node)
         curParent = curParent->parent;
     }
 
-    return ParseTemplate("NavigList", vector<string>{parentList});
+    vector<string> templateArgs = vector<string>{parentList};
+    templateArgs.insert(templateArgs.end(), args.begin(), args.end());
+
+    return ParseTemplate("NavigList", templateArgs);
 }
 
-string TemplateParser::PasrseTreeMap(Node *node)
+string TemplateParser::PasrseTreeMap(Node *node, vector<string> args)
 {
     string map = "";
 
@@ -178,7 +181,10 @@ string TemplateParser::PasrseTreeMap(Node *node)
     for (auto curLevelNode : curLevel)
         map += ParseTreeMapLevel(curLevelNode, 1);
 
-    string ret = ParseTemplate("TreeMap", vector<string>{map});
+    vector<string> templateArgs = vector<string>{map};
+    templateArgs.insert(templateArgs.end(), args.begin(), args.end());
+
+    string ret = ParseTemplate("TreeMap", templateArgs);
     return ret;
 }
 
