@@ -24,6 +24,8 @@ public:
 class TemplateParser
 {
 private:
+    // used to avoid infinite loops
+    static std::set<string> currentTemplates;
     unordered_map<string, Template> TemplateMap;
     string ParseTemplate(const string &name, const vector<string> &inputArgs);
 
@@ -35,5 +37,5 @@ private:
 
 public:
     TemplateParser();
-    string Parse(const string &iLine, set<string> already_encountered);
+    string Parse(const string &iLine);
 };

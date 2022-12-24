@@ -45,7 +45,8 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "set": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "liveServer.settings.port": 5501

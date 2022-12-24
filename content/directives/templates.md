@@ -79,6 +79,10 @@ Template 6 contains a cyclic dependence and so does $Template7()$.
 Template 7 contains a cyclic dependence and so does $Template6()$.
 #
 
+# $Template8()
+Template 8 calls $PageName()$ thrice: $PageName()$ & $PageName()$ & $PageName()$
+#
+
 //<------Custom Templates for testing
 
 # $Header():

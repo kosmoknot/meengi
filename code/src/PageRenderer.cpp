@@ -20,7 +20,7 @@ std::string PageRenderer::InterpretLine(const std::string &iLine)
     // We might want to change the newline character to <br> instead
     // Or we can put a optional parameter in template.md if need arises
     // Same thing happens at TemplateParser::TemplateParser()
-    return templateParser.Parse(iLine, set<string>()) + "\n";
+    return templateParser.Parse(iLine) + "<br>";
 }
 
 void PageRenderer::Render(Node *startNode)

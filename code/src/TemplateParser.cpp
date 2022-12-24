@@ -34,6 +34,7 @@ string Template::Parse(const vector<string> &inputArgs)
     return ret;
 }
 
+std::set<string> TemplateParser::currentTemplates = std::set<string>();
 TemplateParser::TemplateParser()
 {
     auto Lines = GetLinesFromFile("./content/directives/templates.md");
@@ -95,10 +96,15 @@ string TemplateParser::ParseTemplate(const string &name, const vector<string> &i
     else if (name == "PageName")
         output = PageRenderer::GetCurrent()->name;
 
+    // Maintaining list of encountered templates in nested cases
+    TemplateParser::currentTemplates.insert(name);
+    output = TemplateParser::Parse(output);
+    TemplateParser::currentTemplates.erase(name);
+
     return output;
 }
 
-string TemplateParser::Parse(const string &iLine, set<string> already_encountered)
+string TemplateParser::Parse(const string &iLine)
 {
     auto pos_start = iLine.find("$");
     string ret = iLine;
@@ -112,11 +118,11 @@ string TemplateParser::Parse(const string &iLine, set<string> already_encountere
 
             string templateName = ExtractBetween(temp, "$", "(");
 
-            if (already_encountered.find(templateName) == already_encountered.end())
+            // Making sure no infinite loops
+            if (TemplateParser::currentTemplates.find(templateName) == TemplateParser::currentTemplates.end())
             {
                 vector<string> argsList = TokenizeBetween(temp, ",()");
                 string newText = "";
-
                 // Parse the special templates
                 if (templateName == "ChildList")
                     newText = ParseChildList(PageRenderer::GetCurrent(), argsList);
@@ -133,9 +139,12 @@ string TemplateParser::Parse(const string &iLine, set<string> already_encountere
                 else
                     newText = ParseTemplate(templateName, argsList);
 
-                already_encountered.insert(templateName);
-                return TemplateParser::Parse(ret.replace(pos_start, pos_end - pos_start + 1, newText), already_encountered);
+                // Look for more templates in that line
+                return TemplateParser::Parse(ret.replace(pos_start, pos_end - pos_start + 1, newText));
             }
+            // remove the infinite loops
+            else
+                ret.replace(pos_start, pos_end - pos_start + 1, "");
         }
     }
     return ret;
